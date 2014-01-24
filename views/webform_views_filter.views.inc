@@ -16,12 +16,12 @@ function webform_views_filter_views_data() {
   );
 
   $data['webform_component']['nid'] = array(
-    'title' => t('Webform data filter'),
+    'title' => t('Has attached components'),
     'group' => t('Webform'),
-    'help' => t('Filter content that has webform attached.'),
+    'help' => t('Filter content with webform components attached.'),
     'filter' => array(
     'handler' => 'webform_views_filter_has_components',
-    'label' => t('Has Webform'),
+    'label' => t('Has attached components'),
     'type' => 'yes-no',
     'use equal' => TRUE, // Use status = 1 instead of status <> 0 in WHERE statment
   ),
