@@ -1,0 +1,6 @@
+name = Webform views filter
+description = Adds a filter to views to display only content with webforms associated with them.
+core = 7.x
+package = Webform
+
+files[]=views/webform_views_filter_has_components.inc
