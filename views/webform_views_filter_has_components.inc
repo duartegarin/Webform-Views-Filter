@@ -155,10 +155,10 @@ class webform_views_filter_has_components extends views_handler_filter {
   function query() {
     $this->ensure_my_table();
 
-    if($this->value == 1){
+    if ($this->value == 1){
       $this->query->add_where($this->options['group'], 'webform_component.nid', '', '!=');
     }
-    else{
+    else {
       $this->query->add_where($this->options['group'],
         'webform_component.nid', NULL, 'is');
     }
