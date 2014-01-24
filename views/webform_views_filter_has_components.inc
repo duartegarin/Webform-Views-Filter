@@ -14,7 +14,7 @@ class webform_views_filter_has_components extends views_handler_filter_boolean_o
   /**
    * Redefining query to filter content based on the webform components table.
    */
-  function query() {
+  public function query() {
     $this->ensure_my_table();
     $field = "$this->table.$this->real_field";
 
