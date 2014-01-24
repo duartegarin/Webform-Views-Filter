@@ -1,11 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: duarte
- * Date: 23/01/14
- * Time: 10:06 AM
+ * @file
+ * Primarily file for this Drupal module.
+ *
+ * We define the api version and the path to the views plugins created.
  */
 
+/**
+ * Implements hook_views_api().
+ */
 function webform_views_filter_views_api() {
   return array(
     'api' => 3,
