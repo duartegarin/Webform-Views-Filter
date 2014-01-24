@@ -18,7 +18,7 @@ class webform_views_filter_has_components extends views_handler_filter_boolean_o
     $this->ensure_my_table();
     $field = "$this->table.$this->real_field";
 
-    if ($this->value == 1){
+    if ($this->value == 1) {
       $this->query->add_where($this->options['group'], $field, '', '!=');
     }
     else {
