@@ -7,7 +7,7 @@
  */
 
 /**
- * Implements hook_views_api()
+ * Implements hook_views_api().
  */
 function webform_views_filter_views_api() {
   return array(
