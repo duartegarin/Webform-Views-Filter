@@ -2,33 +2,22 @@
 
 /**
  * @file
- * Definition of views_handler_filter_boolean_operator.
+ * Definition of webform_views_filter_has_components.
  */
 
 /**
  * Simple filter to handle matching of boolean values
  *
- * Definition items:
- * - label: (REQUIRED) The label for the checkbox.
- * - type: For basic 'true false' types, an item can specify the following:
- *    - true-false: True/false (this is the default)
- *    - yes-no: Yes/No
- *    - on-off: On/Off
- *    - enabled-disabled: Enabled/Disabled
- * - accept null: Treat a NULL value as false.
- * - use equal: If you use this flag the query will use = 1 instead of <> 0.
- *   This might be helpful for performance reasons.
- *
- * @ingroup views_filter_handlers
  */
 class webform_views_filter_has_components extends views_handler_filter {
-  // exposed filter options
+
   var $always_multiple = TRUE;
-  // Don't display empty space where the operator would be.
   var $no_operator = TRUE;
-  // Whether to accept NULL as a false value or not
   var $accept_null = FALSE;
 
+  /*
+   * Defines the constructor for this class using a booleans as properties.
+   */
   function construct() {
     $this->value_value = t('True');
     if (isset($this->definition['label'])) {
@@ -45,16 +34,8 @@ class webform_views_filter_has_components extends views_handler_filter {
   }
 
   /**
-   * Return the possible options for this filter.
+   * This function returns the possible options for this filter.
    *
-   * Child classes should override this function to set the possible values
-   * for the filter.  Since this is a boolean filter, the array should have
-   * two possible keys: 1 for "True" and 0 for "False", although the labels
-   * can be whatever makes sense for the filter.  These values are used for
-   * configuring the filter, when the filter is exposed, and in the admin
-   * summary of the filter.  Normally, this should be static data, but if it's
-   * dynamic for some reason, child classes should use a guard to reduce
-   * database hits as much as possible.
    */
   function get_value_options() {
     if (isset($this->definition['type'])) {
@@ -75,6 +56,9 @@ class webform_views_filter_has_components extends views_handler_filter {
     }
   }
 
+  /*
+   * Defines the default option as False.
+   */
   function option_definition() {
     $options = parent::option_definition();
 
@@ -83,10 +67,16 @@ class webform_views_filter_has_components extends views_handler_filter {
     return $options;
   }
 
+  /**
+   * Defines operator form.
+   */
   function operator_form(&$form, &$form_state) {
     $form['operator'] = array();
   }
 
+  /**
+   * Defines the form being used in the view configuraton (true/false).
+   */
   function value_form(&$form, &$form_state) {
     if (empty($this->value_options)) {
       // Initialize the array of possible values for this filter.
@@ -122,12 +112,18 @@ class webform_views_filter_has_components extends views_handler_filter {
     }
   }
 
+  /**
+   * Function that validates user submission in the filter configuration.
+   */
   function value_validate($form, &$form_state) {
     if ($form_state['values']['options']['value'] == 'All' && !empty($form_state['values']['options']['expose']['required'])) {
       form_set_error('value', t('You must select a value unless this is an non-required exposed filter.'));
     }
   }
 
+  /**
+   * Function that returns the summary for the chosen options of the filter.
+   */
   function admin_summary() {
     if ($this->is_a_group()) {
       return t('grouped');
@@ -145,6 +141,9 @@ class webform_views_filter_has_components extends views_handler_filter {
     return $this->value_options[!empty($this->value)];
   }
 
+  /**
+   * Configures options to be exposed.
+   */
   function expose_options() {
     parent::expose_options();
     $this->options['expose']['operator_id'] = '';
@@ -152,6 +151,10 @@ class webform_views_filter_has_components extends views_handler_filter {
     $this->options['expose']['required'] = TRUE;
   }
 
+  /**
+   * Adjusts the query according to the values chosen in the configuration
+   * screen.
+   */
   function query() {
     $this->ensure_my_table();
 
@@ -161,7 +164,5 @@ class webform_views_filter_has_components extends views_handler_filter {
     else{
       $this->query->add_where($this->options['group'], 'webform_component.nid', null, 'is');
     }
-
-
   }
 }
