@@ -7,7 +7,6 @@
 
 /**
  * Simple filter to handle matching of boolean values
- *
  */
 class webform_views_filter_has_components extends views_handler_filter {
 
@@ -15,7 +14,7 @@ class webform_views_filter_has_components extends views_handler_filter {
   var $no_operator = TRUE;
   var $accept_null = FALSE;
 
-  /*
+  /**
    * Defines the constructor for this class using a booleans as properties.
    */
   function construct() {
@@ -26,7 +25,7 @@ class webform_views_filter_has_components extends views_handler_filter {
     if (isset($this->definition['accept null'])) {
       $this->accept_null = (bool) $this->definition['accept null'];
     }
-    else if (isset($this->definition['accept_null'])) {
+    elseif (isset($this->definition['accept_null'])) {
       $this->accept_null = (bool) $this->definition['accept_null'];
     }
     $this->value_options = NULL;
@@ -35,7 +34,6 @@ class webform_views_filter_has_components extends views_handler_filter {
 
   /**
    * This function returns the possible options for this filter.
-   *
    */
   function get_value_options() {
     if (isset($this->definition['type'])) {
@@ -56,7 +54,7 @@ class webform_views_filter_has_components extends views_handler_filter {
     }
   }
 
-  /*
+  /**
    * Defines the default option as False.
    */
   function option_definition() {
@@ -152,8 +150,7 @@ class webform_views_filter_has_components extends views_handler_filter {
   }
 
   /**
-   * Adjusts the query according to the values chosen in the configuration
-   * screen.
+   * Adjusts the query according to the values chosen in the configuration.
    */
   function query() {
     $this->ensure_my_table();
@@ -162,7 +159,8 @@ class webform_views_filter_has_components extends views_handler_filter {
       $this->query->add_where($this->options['group'], 'webform_component.nid', '', '!=');
     }
     else{
-      $this->query->add_where($this->options['group'], 'webform_component.nid', null, 'is');
+      $this->query->add_where($this->options['group'],
+        'webform_component.nid', NULL, 'is');
     }
   }
 }
