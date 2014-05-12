@@ -1,14 +1,3 @@
-
-CONTENTS OF THIS FILE
----------------------
-
- * Introduction
- * Installation
- * IRC API Hooks
- * Cache Warning
- * Design Decisions
-
-
 INTRODUCTION
 ------------
 
