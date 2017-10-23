@@ -1,7 +1,7 @@
 INTRODUCTION
 ------------
 
-Current Maintainer: Duarte Garin <duartegarin@fastmail.com.au>
+Current Maintainer: Duarte Gari
 
 By using this module you can filter a view to show only content that has webform
 components attached to it,
